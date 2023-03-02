@@ -1,0 +1,189 @@
+# 主题模式
+
+theme: 
+  switch: true 
+  default: style-light 
+
+# 网站图标
+
+favicon:
+  logo: /img/logo.svg
+  icon16: /img/logo.svg
+  icon32: /img/logo.svg
+  appleTouchIcon: apple-touch-icon.png
+  webmanifest: /site.webmanifest
+  visibilitychange: true
+  hidden: failure.ico
+  showText: (/≧▽≦/)嘿！骗你的！
+  hideText: (●—●)哎呀，崩溃了！
+
+# 用户信息
+
+user:
+  name: Shawn # 侧边栏与其他位置的姓名标识
+  first_name: Shawn
+  last_name:  # 顶栏姓名标识
+  avatar: https://tse4-mm.cn.bing.net/th/id/OIP-C.xNLWrybyA5rgSUMPR9AozgAAAA?pid=ImgDet&rs=1
+  email: 2557114220@qq.com
+  domain: https://shawn-blogs.netlify.app/
+  describe: 世事漫随流水 算来一生浮梦。
+  ruleText: <br> 暂不接受友链申请，仅收录OJ链接。
+
+# 顶栏 | 导航栏 | TopBars
+
+top_bars:
+  - title: Home
+    url: /
+  
+  - title: Archives
+    url: /archives/
+    noswup: true
+    children:
+      - title: year
+        url: /archives/
+      - title: Categories
+        url: /categories/
+
+  - title: Links
+    url: /links/
+    noswup: true
+
+  - title: About
+    url: /about/
+    noswup: true
+
+# 侧栏
+
+## 社交链接
+
+sidebar:
+  social:  # 社交地址
+    - name: github
+      icon: fab fa-github   
+      url: https://github.com/ShawnNotFound
+    
+    - name: luogu
+      icon: /img/luogu.png
+      url: https://gitee.com
+
+## 打字动画
+
+  typedTextPrefix: Stay
+  typedText: [ 'Hungry | Stay Foolish' ]
+
+## 侧边信息
+
+  info: # 个人信息
+    - key: Ages
+      val: 16
+    - key: Address
+      val: Hebei - China  
+
+
+# 横幅 Banner
+
+banner:
+  index:
+    type: video
+    bgurl: https://cdn.moji.com/websrc/video/autumn20190924.mp4
+    bannerTitle: 树深时见鹿，<br>溪午不闻钟。
+    bannerText: Hi my new friend!
+
+  archive: 
+    type: img
+    bgurl: https://pic.imgdb.cn/item/63ba7f5cbe43e0d30ed4dad0.jpg
+
+  about:
+    type: img
+    bgurl: https://pic.imgdb.cn/item/63ba97c1be43e0d30e0306c3.jpg
+  
+  links: 
+    type: img
+    bgurl: https://pic.imgdb.cn/item/63ba7f83be43e0d30ed522ad.jpg
+
+
+# 分类卡片
+
+categorie_card:
+  enable: true
+  len: 2
+
+# 归档页
+
+archive:
+  type: more # less more
+
+
+# 页脚
+
+footer:
+  copyrightYear: 2022
+  
+  powered:
+    enable: false
+  
+  live_time:
+    enable: true
+    prefix: footer.tips
+    start_time: 12/25/2022 17:00:00
+
+# 文章Artical
+
+post_pagination: 
+  enable: true 
+  type: small # large || small
+
+
+## 目录
+
+toc:
+  enable: true
+  list_number: true
+  max_depth: 4
+  min_depth: 1
+
+
+# 百度SEO
+
+baidu_push: true
+
+# 评论
+
+comment:
+  twikoo:
+    enable: true
+    visitor: true
+    envId: cloud-development-server-cf32436 # 腾讯云环境id
+
+
+# 链接页配置，请见 /source/_data/links.yml
+
+
+
+# 关于页
+
+about:
+  introduction: $Hi$，我是Shawn <br> 很高兴您能在浩瀚如烟的互联网世界里发现我的博客. <br> <br> 我是一名 oier, 极客, 摆烂主义者 <br> 热衷于探索计算机的一切 <br> 正在石家庄二中度过充实美好的三年 <br> 我将在此分享一些学习笔记以及其他有趣的东西. <br> <br> 别来无恙啊 ~   # 个人简单描述
+  blog: Powered by Hexo # 博客信息
+  privacy: 本网站不会追踪访客行为，且不要求访客提供任何敏感信息（真实姓名、身份证号码、手机号等），因而也不存在任何隐私泄漏问题。访客参与评论，必须遵守法律法规和基本道德规范，文明礼貌。严禁发布任何有关淫秽、反动、暴力、博彩、恐吓、低俗的内容等违法信息，在尊重言论自由的同时请保持和平与理性。请勿对他人采取不友好的评论或其它过激行为。     # 隐私权说明    
+
+
+# 字数统计
+
+wordcount:
+  enable: false
+  count: true
+  time: true
+
+# KaTeX
+
+katex:
+  copy_tex: true
+  global: true
+  options: {}
+
+# 站内搜索
+
+search:
+  enable: true
+  type: local

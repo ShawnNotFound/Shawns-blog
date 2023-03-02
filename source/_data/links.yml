@@ -1,0 +1,29 @@
+- name: 洛谷
+  url: https://www.luogu.com.cn/
+  image: /img/luogu.png
+  desc: 洛谷 | 计算机科学教育新生态
+
+- name: Codeforces
+  url: https://codeforces.com/
+  image: https://cdn.luogu.com.cn/upload/image_hosting/yx6atdky.png
+  desc: The bigest OJ on the world
+
+- name: S2OJ
+  url: https://sjzezoj.com/
+  image: https://sjzezoj.com/images/logo_small.png
+  desc: The OJ of S2 Middle School
+
+- name: AtCoder
+  url: https://atcoder.jp/
+  image: https://img.atcoder.jp/assets/logo.png
+  desc: The OJ of Japan Oier
+
+- name: UOJ
+  url: https://uoj.ac/
+  image: https://uoj.ac/pictures/UOJ.png
+  desc: Universal Online Judge
+
+- name: POJ
+  url: http://poj.org/
+  image: https://ts4.cn.mm.bing.net/th?id=ODLS.922033e2-f74d-4afb-b937-3abb2208a83f&w=16&h=16&o=6&pid=1.2
+  desc: The Online Judge of PKU
