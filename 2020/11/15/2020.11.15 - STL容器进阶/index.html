@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="$STL$ 容器$vector$ 变长数组 包含在 &lt; vector &gt; 头文件中  基本思想：倍增 系统为某一程序分配空间时，所用时间与空间大小无关，只与申请次数有关。因此 vector 为保证效率，需要尽可能减少申请次数。**vector 使用倍增的思想分配空间** vector 在定义时，先开辟一定长度的空间，当元素个数大于当前数组长度时，开一个两倍于该长度的空间，再将原数组复制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL进阶 | 学习笔记">
+<meta property="og:url" content="http://example.com/2020/11/15/2020.11.15%20-%20STL%E5%AE%B9%E5%99%A8%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="Shawn &#39;s Blog">
+<meta property="og:description" content="$STL$ 容器$vector$ 变长数组 包含在 &lt; vector &gt; 头文件中  基本思想：倍增 系统为某一程序分配空间时，所用时间与空间大小无关，只与申请次数有关。因此 vector 为保证效率，需要尽可能减少申请次数。**vector 使用倍增的思想分配空间** vector 在定义时，先开辟一定长度的空间，当元素个数大于当前数组长度时，开一个两倍于该长度的空间，再将原数组复制">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-15T10:40:31.000Z">
+<meta property="article:modified_time" content="2023-03-02T02:11:34.547Z">
+<meta property="article:author" content="Shawn">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+
+<title >STL进阶 | 学习笔记</title>
+
+<!-- Favicon -->
+
+    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=1.2.14' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+
+    
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@latest/dist/katex.min.css">
+
+    
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Shawn","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"/img/logo.svg","icon16":"/img/logo.svg","icon32":"/img/logo.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"theme_version":"1.2.14","theme":{"switch":true,"default":"style-light"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_button":"Copy","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false,"plugin":{"flickr_justified_gallery":{"js":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"fancybox":{"css":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css","js":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"}},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h"}};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=1.2.14" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style=" position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+			<a href="/" class="trm-logo-frame trm-anima-link">
+				
+					<img alt="logo" src="/img/logo.svg">
+				
+				
+			</a>
+			<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+
+			<!-- menu -->
+			<div class="trm-menu">
+				<nav>
+					<ul>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/" target="">
+								Home
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/archives/" target="">
+								Archives
+							</a>
+							
+							<ul>
+								
+								<li>
+									<a  href="/archives/" target="">
+										year
+									</a>
+								</li>
+								
+								<li>
+									<a  href="/categories/" target="">
+										Categories
+									</a>
+								</li>
+								
+							</ul>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/links/" target="">
+								Links
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/about/" target="">
+								About
+							</a>
+							
+						</li>
+						
+					</ul>
+				</nav>
+			</div>
+			<!-- menu end -->
+			
+			<!-- mode switcher place -->
+			
+			<div class="trm-mode-switcher-place">
+				<!-- <div class="trm-hidden-switcher"> -->
+					<div class="trm-mode-switcher">
+					  <i class="iconfont far fa-sun"></i>
+					  <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+					  <label class="trm-swich" for="trm-swich"></label>
+					  <i class="iconfont far fa-moon"></i>
+					</div>
+				  <!-- </div> -->
+			</div>
+			
+			<!-- mode switcher place end -->
+
+			
+				
+				<div id="trm-search-btn" class="trm-search-btn">
+					<i class="iconfont fas fa-search"></i>
+				</div>
+				 
+			 
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            STL进阶 | 学习笔记
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2020
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://tse4-mm.cn.bing.net/th/id/OIP-C.xNLWrybyA5rgSUMPR9AozgAAAA?pid=ImgDet&rs=1">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        Shawn
+    </h5>
+    
+    <div class="trm-label">
+        Stay
+        <span class="trm-typed-text">
+            <!-- Words for theme.user.typedText -->
+        </span>
+    </div>
+    
+</div>
+<!-- card header end -->
+
+<!-- sidebar social -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+
+<div class="trm-social">
+    
+        <a href="https://github.com/ShawnNotFound" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="luogu" rel="nofollow" target="_blank">
+            <i class="iconfont /img/luogu.png"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+
+<!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Ages:
+            </div>
+            <div class="trm-label trm-label-light">
+                16
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                Address:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hebei - China
+            </div>
+        </li>
+    
+</ul>
+
+<!-- info end -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<!-- action button -->
+<div class="text-center">
+    <a href="mailto:2557114220@qq.com" class="trm-btn">
+        Contact Me
+        <i class="iconfont far fa-envelope"></i>
+    </a>
+</div>
+<!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#STL-容器"  data-scroll-to="#STL-容器"><span class="toc-number">1.</span> <span class="toc-text">$STL$ 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#vector-变长数组"  data-scroll-to="#vector-变长数组"><span class="toc-number">1.1.</span> <span class="toc-text">$vector$ 变长数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义"  data-scroll-to="#定义"><span class="toc-number">1.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数"  data-scroll-to="#操作函数"><span class="toc-number">1.1.2.</span> <span class="toc-text">操作函数</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#遍历-vector-数组"  data-scroll-to="#遍历-vector-数组"><span class="toc-number">1.1.3.</span> <span class="toc-text">遍历 vector 数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#pair-二元组"  data-scroll-to="#pair-二元组"><span class="toc-number">1.2.</span> <span class="toc-text">$pair$ 二元组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义："  data-scroll-to="#定义："><span class="toc-number">1.2.1.</span> <span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-1"  data-scroll-to="#操作函数-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#string-字符串"  data-scroll-to="#string-字符串"><span class="toc-number">1.3.</span> <span class="toc-text">$string$ 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义-1"  data-scroll-to="#定义-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-2"  data-scroll-to="#操作函数-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#queue-队列"  data-scroll-to="#queue-队列"><span class="toc-number">1.4.</span> <span class="toc-text">$queue$ 队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义-2"  data-scroll-to="#定义-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-3"  data-scroll-to="#操作函数-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#deque-双端队列"  data-scroll-to="#deque-双端队列"><span class="toc-number">1.5.</span> <span class="toc-text">$deque$ 双端队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-4"  data-scroll-to="#操作函数-4"><span class="toc-number">1.5.1.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#priority-queue-优先队列-x2F-堆"  data-scroll-to="#priority-queue-优先队列-x2F-堆"><span class="toc-number">1.6.</span> <span class="toc-text">$priority_queue$ 优先队列 &#x2F; 堆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义-3"  data-scroll-to="#定义-3"><span class="toc-number">1.6.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-5"  data-scroll-to="#操作函数-5"><span class="toc-number">1.6.2.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#stack-栈"  data-scroll-to="#stack-栈"><span class="toc-number">1.7.</span> <span class="toc-text">$stack$ 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义-4"  data-scroll-to="#定义-4"><span class="toc-number">1.7.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-6"  data-scroll-to="#操作函数-6"><span class="toc-number">1.7.2.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#set-amp-multiset-有序集合-amp-有序多重集合"  data-scroll-to="#set-amp-multiset-有序集合-amp-有序多重集合"><span class="toc-number">1.8.</span> <span class="toc-text">$set$ &amp; $multiset$ 有序集合 &amp; 有序多重集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-7"  data-scroll-to="#操作函数-7"><span class="toc-number">1.8.1.</span> <span class="toc-text">操作函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#map-amp-multimap-映射"  data-scroll-to="#map-amp-multimap-映射"><span class="toc-number">1.9.</span> <span class="toc-text">$map$ &amp; $multimap$ 映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#定义-5"  data-scroll-to="#定义-5"><span class="toc-number">1.9.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#操作函数-8"  data-scroll-to="#操作函数-8"><span class="toc-number">1.9.2.</span> <span class="toc-text">操作函数</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#访问与遍历"  data-scroll-to="#访问与遍历"><span class="toc-number">1.9.3.</span> <span class="toc-text">访问与遍历</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#特殊使用"  data-scroll-to="#特殊使用"><span class="toc-number">1.9.4.</span> <span class="toc-text">特殊使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#unordered-set-amp-unordered-map-无序集合-x2F-映射"  data-scroll-to="#unordered-set-amp-unordered-map-无序集合-x2F-映射"><span class="toc-number">1.10.</span> <span class="toc-text">$unordered_set$ &amp; $unordered_map$ 无序集合 &#x2F; 映射</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#unordered-multiset-amp-unordered-multimap-多重无序集合-x2F-映射"  data-scroll-to="#unordered-multiset-amp-unordered-multimap-多重无序集合-x2F-映射"><span class="toc-number">1.11.</span> <span class="toc-text">$unordered_multiset$ &amp; $unordered_multimap$ 多重无序集合 &#x2F; 映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#bitset-压位"  data-scroll-to="#bitset-压位"><span class="toc-number">1.11.1.</span> <span class="toc-text">bitset 压位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a rel="nofollow" class="toc-link" href="#定义-6"  data-scroll-to="#定义-6"><span class="toc-number">1.11.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a rel="nofollow" class="toc-link" href="#操作"  data-scroll-to="#操作"><span class="toc-number">1.11.1.2.</span> <span class="toc-text">操作</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#STL-函数"  data-scroll-to="#STL-函数"><span class="toc-number">2.</span> <span class="toc-text">STL 函数</span></a></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            11/15
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            18:40
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Shawn
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="STL-容器"><a href="#STL-容器" class="headerlink" title="$STL$ 容器"></a>$STL$ 容器</h1><h2 id="vector-变长数组"><a href="#vector-变长数组" class="headerlink" title="$vector$ 变长数组"></a>$vector$ 变长数组</h2><blockquote>
+<p>包含在 &lt; vector &gt; 头文件中</p>
+</blockquote>
+<p><strong>基本思想：倍增</strong></p>
+<p>系统为某一程序分配空间时，所用时间与空间大小无关，只与申请次数有关。因此 <code>vector</code> 为保证效率，需要尽可能减少申请次数。**<code>vector</code> 使用倍增的思想分配空间**</p>
+<p><code>vector</code> 在定义时，先开辟一定长度的空间，当元素个数大于当前数组长度时，开一个两倍于该长度的空间，再将原数组复制进新数组</p>
+<p>由此可知，当开辟一个长度为 <code>n</code> 的 <code>vector</code> 数组时，需进行 log<del>2</del>n 次开辟空间的操作，总复制次数为 <code>n</code>，平均<strong>插入每个数的时间复杂度是 O(1)</strong></p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; a;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(N)</span></span>;</span><br><span class="line"><span class="comment">// 定义一个长度为 N 的 vector 数组，初始化为0</span></span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(<span class="number">10</span>, <span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// 定义一个长度为 10 的 vector 数组，每个元素的值均为 3</span></span><br><span class="line"><span class="function">vector&lt;string&gt; <span class="title">a</span><span class="params">(<span class="number">10</span>, <span class="string">&quot;wangk&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; a[<span class="number">10</span>];</span><br><span class="line"><span class="comment">// 定义 10 个 vector 数组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数"><a href="#操作函数" class="headerlink" title="操作函数"></a>操作函数</h3><p>O(1):</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">// 返回 a 数组中元素的个数</span></span><br><span class="line"><span class="comment">// 注意：size 函数为无符号类型，即使用 a.size() - 1 有 RE 风险</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 判断 a 数组是否为空</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">front</span>();</span><br><span class="line"><span class="comment">// 返回 a 数组的第一个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">back</span>();</span><br><span class="line"><span class="comment">// 返回 a 数组的最后一个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">push_back</span>(x);</span><br><span class="line">a.<span class="built_in">emplace_back</span>(x);</span><br><span class="line"><span class="comment">// 向 a 数组最后插入一个元素 x</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">pop_back</span>();</span><br><span class="line"><span class="comment">// 删除 a 数组最后一个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>O(n)；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">// 清空 a 数组，容量不变</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">erase</span>(begin, end);</span><br><span class="line"><span class="comment">// 删除 [begin, end) 区域内元素</span></span><br></pre></td></tr></table></figure>
+
+<p>迭代器：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">begin</span>();</span><br><span class="line"><span class="comment">// 返回 a 数组第 0 个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">end</span>();</span><br><span class="line"><span class="comment">// 返回 a 数组最后一个元素的下一个位置</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>vector 还支持随机寻址。即可以使用<br><code>a[2]</code> 访问 a 数组第 3 个元素</li>
+</ul>
+<h3 id="遍历-vector-数组"><a href="#遍历-vector-数组" class="headerlink" title="遍历 vector 数组"></a>遍历 vector 数组</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.<span class="built_in">size</span>(); i ++) </span><br><span class="line">    cout &lt;&lt; a[i] &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (vector&lt;<span class="type">int</span>&gt; :: iterator i = a.<span class="built_in">begin</span>(); i != a.<span class="built_in">end</span>(); i ++)</span><br><span class="line">    cout &lt;&lt; *i &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : a)</span><br><span class="line">    cout &lt;&lt; x &lt;&lt; endl;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>vector 还支持按照字典序比较两数组，直接使用运算符比较即可</li>
+</ul>
+<hr>
+<h2 id="pair-二元组"><a href="#pair-二元组" class="headerlink" title="$pair$ 二元组"></a>$pair$ 二元组</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="type">int</span>, string&gt; a;</span><br><span class="line"></span><br><span class="line">a = <span class="built_in">make_pair</span>(<span class="number">10</span>, <span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">a = &#123;<span class="number">10</span>, <span class="string">&quot;World&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数-1"><a href="#操作函数-1" class="headerlink" title="操作函数"></a>操作函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">first</span>();</span><br><span class="line"><span class="comment">// 取 a 的第一个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">second</span>();</span><br><span class="line"><span class="comment">// 取 a 的第二个元素</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>支持比较远算，与 vector 一样是按照字典序排序，以 first 为第一关键字，以 second 为第二关键字</li>
+</ul>
+<p>ps: 一些奇技淫巧</p>
+<p>如果有三个关键字需存储，我们仅需：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="type">int</span>, pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; a;</span><br></pre></td></tr></table></figure>
+<p>即在 p 中存入了三个整型变量</p>
+<hr>
+<h2 id="string-字符串"><a href="#string-字符串" class="headerlink" title="$string$ 字符串"></a>$string$ 字符串</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string a;</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数-2"><a href="#操作函数-2" class="headerlink" title="操作函数"></a>操作函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">size</span>(); || a.<span class="built_in">length</span>();</span><br><span class="line"><span class="comment">// 返回字符串长度</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 返回字符串是否为空</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">// 清空字符串</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">substr</span>(l ,n);</span><br><span class="line"><span class="comment">// 返回从 l 开始长度为 n 的字串</span></span><br><span class="line"><span class="comment">// 注：l 参数从 0 开始</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">c_str</span>();</span><br><span class="line"><span class="comment">// 返回 a 存储字符串的起始地址，多用于输出</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>字符串可以支持 <code>+</code> 运算，使用 <code>a + b</code> 即可将 a 和 b 两个字符串首位拼接在一起</li>
+</ul>
+<hr>
+<h2 id="queue-队列"><a href="#queue-队列" class="headerlink" title="$queue$ 队列"></a>$queue$ 队列</h2><blockquote>
+<p>包含在 &lt; queue &gt; 头文件中</p>
+</blockquote>
+<h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line"></span><br><span class="line">q = <span class="built_in">queue</span>&lt;<span class="type">int</span>&gt;();</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数-3"><a href="#操作函数-3" class="headerlink" title="操作函数"></a>操作函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">// 返回队列中元素的个数，O(1)</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 判断队列是否为空</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">push</span>();</span><br><span class="line"><span class="comment">// 向队尾插入一个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">pop</span>();</span><br><span class="line"><span class="comment">// 删除队头一个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">front</span>();</span><br><span class="line"><span class="comment">// 返回队头元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">back</span>();</span><br><span class="line"><span class="comment">// 返回队尾元素</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="deque-双端队列"><a href="#deque-双端队列" class="headerlink" title="$deque$ 双端队列"></a>$deque$ 双端队列</h2><p>常数和空间都极大，不建议使用</p>
+<h3 id="操作函数-4"><a href="#操作函数-4" class="headerlink" title="操作函数"></a>操作函数</h3><p>$O(1)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">// 返回队列中元素的个数</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 判断队列是否为空</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">// 清空队列</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">front</span>();</span><br><span class="line"><span class="comment">// 返回队列最左侧元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">back</span>();</span><br><span class="line"><span class="comment">// 返回队列最右侧元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">push_back</span>(x);</span><br><span class="line"><span class="comment">// 在队列右侧插入元素 x </span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">pop_back</span>();</span><br><span class="line"><span class="comment">// 在队列右侧删除一个元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">push_front</span>(x);</span><br><span class="line"><span class="comment">// 在队列左侧插入元素 x </span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">pop_front</span>();</span><br><span class="line"><span class="comment">// 在队列左侧删除一个元素</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>迭代器：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">begin</span>();</span><br><span class="line"><span class="comment">// 返回队列最左侧首元素</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">end</span>();</span><br><span class="line"><span class="comment">// 返回队列最右侧元素的下一个位置</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>deque 还支持随机寻址。即可以使用<br><code>a[2]</code> 访问队列 a 从左往右数第 3 个元素</li>
+</ul>
+<h2 id="priority-queue-优先队列-x2F-堆"><a href="#priority-queue-优先队列-x2F-堆" class="headerlink" title="$priority_queue$ 优先队列 &#x2F; 堆"></a>$priority_queue$ 优先队列 &#x2F; 堆</h2><p>具体的实现方式，可见[[2022.11.12 - 堆]]</p>
+<h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="type">int</span>&gt; heap;</span><br><span class="line"><span class="comment">// 定义大根堆(从大到小排序，以最大值为根节点)</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">push</span>(-x);</span><br><span class="line"><span class="comment">// 在大根堆进行此操作，即可将 x 的绝对值按照从小到大排序(小根堆)</span></span><br><span class="line"></span><br><span class="line">priority_queue&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;, greater&lt;<span class="type">int</span>&gt; &gt; heap;</span><br><span class="line"><span class="comment">// 定义小根堆(从小到大排序，以最小值为根节点)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数-5"><a href="#操作函数-5" class="headerlink" title="操作函数"></a>操作函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">heap.<span class="built_in">push</span>();</span><br><span class="line"><span class="comment">// 向堆中插入一个元素</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">pop</span>();</span><br><span class="line"><span class="comment">// 删除堆顶一个元素</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">top</span>();</span><br><span class="line"><span class="comment">// 返回堆顶元素</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">emplace</span>(x);</span><br><span class="line"><span class="comment">// 创建一个堆，并将元素插入堆</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="stack-栈"><a href="#stack-栈" class="headerlink" title="$stack$ 栈"></a>$stack$ 栈</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt; heap;</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数-6"><a href="#操作函数-6" class="headerlink" title="操作函数"></a>操作函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">heap.<span class="built_in">push</span>();</span><br><span class="line"><span class="comment">// 向栈顶插入一个元素</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">pop</span>();</span><br><span class="line"><span class="comment">// 删除栈顶一个元素</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">top</span>();</span><br><span class="line"><span class="comment">// 返回栈顶元素</span></span><br><span class="line"></span><br><span class="line">heap.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">// 返回栈中元素的个数</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 判断栈是否为空</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="set-amp-multiset-有序集合-amp-有序多重集合"><a href="#set-amp-multiset-有序集合-amp-有序多重集合" class="headerlink" title="$set$ &amp; $multiset$ 有序集合 &amp; 有序多重集合"></a>$set$ &amp; $multiset$ 有序集合 &amp; 有序多重集合</h2><ul>
+<li><p>基于平衡二叉树(红黑树)实现<br>可动态维护有序序列，因此不支持随机寻址</p>
+</li>
+<li><p>set 中不会出现重复元素，重复插入的元素会被忽略。</p>
+</li>
+<li><p>multiset 允许重复元素的存在。</p>
+</li>
+</ul>
+<h3 id="操作函数-7"><a href="#操作函数-7" class="headerlink" title="操作函数"></a>操作函数</h3><p>$O(1)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">// 返回集合元素个数</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 判断集合是否为空</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">// 清空集合</span></span><br></pre></td></tr></table></figure>
+
+<p>$O(log_2n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">insert</span>(x);</span><br><span class="line"><span class="comment">// 向集合中插入元素 x，返回 pair：&#123;插入位置迭代器, 是否成功&#125;</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">find</span>(x);</span><br><span class="line"><span class="comment">// 在集合中查找元素 x，如果不存在则返回 a.end() 迭代器</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">count</span>(x);</span><br><span class="line"><span class="comment">// 返回集合中元素 x 的数量</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">erase</span>(x);</span><br><span class="line"><span class="comment">// 输入变量 - 删除所有 x</span></span><br><span class="line"><span class="comment">// 输入迭代器 - 删除迭代器所指向的 x</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">lower_bound</span>(x);</span><br><span class="line"><span class="comment">// 返回大于等于 x 的最小元素的迭代器</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">upper_bound</span>(x);</span><br><span class="line"><span class="comment">// 返回大于 x 的最小元素的迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上两个函数如果不存在这样的元素，则返回 a.end() 迭代器，如解引用迭代器可能会导致 RE</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="map-amp-multimap-映射"><a href="#map-amp-multimap-映射" class="headerlink" title="$map$ &amp; $multimap$ 映射"></a>$map$ &amp; $multimap$ 映射</h2><blockquote>
+<p>包含在 &lt; map &gt; 头文件中</p>
+</blockquote>
+<ul>
+<li>基于平衡二叉树 (红黑树) 实现<br>动态维护有序序列</li>
+</ul>
+<h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map&lt;string, <span class="type">int</span>&gt; a;</span><br><span class="line"><span class="comment">// string 代表键 key, 不可重复</span></span><br><span class="line"><span class="comment">// int 代表值 val</span></span><br><span class="line"></span><br><span class="line">a[<span class="string">&quot;wangk&quot;</span>] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作函数-8"><a href="#操作函数-8" class="headerlink" title="操作函数"></a>操作函数</h3><p>$O(1)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">// 返回集合元素个数</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">// 判断集合是否为空</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">// 清空集合</span></span><br></pre></td></tr></table></figure>
+
+<p>$O(log_2n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">insert</span>();</span><br><span class="line"><span class="comment">// 向映射中插入一个 pair</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">erase</span>();</span><br><span class="line"><span class="comment">// 在映射中删除一个 pair，输入 pair 和迭代器均可</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">find</span>();</span><br><span class="line"><span class="comment">// 查找映射</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">lower_bound</span>(x);</span><br><span class="line"><span class="comment">// 返回大于等于 x 的最小元素的迭代器</span></span><br><span class="line"></span><br><span class="line">a.<span class="built_in">upper_bound</span>(x);</span><br><span class="line"><span class="comment">// 返回大于 x 的最小元素的迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上两个函数如果不存在这样的元素，则返回 a.end() 迭代器</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="访问与遍历"><a href="#访问与遍历" class="headerlink" title="访问与遍历"></a>访问与遍历</h3><p>使用 <code>a[x]</code> 访问时，如果无法找到，则新建一个 $key$ 为 $x$ 的 $map$，$val$ 指向 $0$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : a)</span><br><span class="line">    cout &lt;&lt; x.first &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; x.second &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>注意：在遍历中无法修改 $key$，只能修改 $value$</p>
+<h3 id="特殊使用"><a href="#特殊使用" class="headerlink" title="特殊使用"></a>特殊使用</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; a[<span class="string">&quot;wangk&quot;</span>] &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>输出 <code>1</code>，时间复杂度为 $O(log_2n)$</p>
+<h2 id="unordered-set-amp-unordered-map-无序集合-x2F-映射"><a href="#unordered-set-amp-unordered-map-无序集合-x2F-映射" class="headerlink" title="$unordered_set$ &amp; $unordered_map$ 无序集合 &#x2F; 映射"></a>$unordered_set$ &amp; $unordered_map$ 无序集合 &#x2F; 映射</h2><h2 id="unordered-multiset-amp-unordered-multimap-多重无序集合-x2F-映射"><a href="#unordered-multiset-amp-unordered-multimap-多重无序集合-x2F-映射" class="headerlink" title="$unordered_multiset$ &amp; $unordered_multimap$ 多重无序集合 &#x2F; 映射"></a>$unordered_multiset$ &amp; $unordered_multimap$ 多重无序集合 &#x2F; 映射</h2><p>总体操作和 <code>set</code> <code>map</code> 等类似，操作的时间复杂度为 O(1)，不支持 <code>lower_bound()</code>和<code>upper_bound()</code> 以及 <code>map</code> 的特殊使用方法</p>
+<p>注意：在初始化时会开 4 倍空间，<strong>警钟敲烂</strong></p>
+<hr>
+<h3 id="bitset-压位"><a href="#bitset-压位" class="headerlink" title="bitset 压位"></a>bitset 压位</h3><h4 id="定义-6"><a href="#定义-6" class="headerlink" title="定义"></a>定义</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;10000&gt; s;</span><br><span class="line"><span class="comment">// 定义长度为 10000 的 bitset</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><ul>
+<li><code>~</code> <code>&amp;</code> <code>|</code> <code>^</code> <code>&gt;&gt;</code> <code>&lt;&lt;</code> <code>==</code> <code>!=</code></li>
+<li>取某一位 <code>s[]</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">s.<span class="built_in">count</span>();</span><br><span class="line"><span class="comment">// 返回 1 的个数</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">any</span>();</span><br><span class="line"><span class="comment">// 是否至少有一个 1</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">none</span>();</span><br><span class="line"><span class="comment">// 是否全部为 0</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">set</span>();</span><br><span class="line"><span class="comment">// 将所有位置初始化成 1</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">reset</span>();</span><br><span class="line"><span class="comment">// 将所有位置初始化为 0</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">set</span>(k, v);</span><br><span class="line"><span class="comment">// 将第 k 位赋为 v</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">flip</span>();</span><br><span class="line"><span class="comment">// 将所有位置取反</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">flip</span>(k);</span><br><span class="line"><span class="comment">// 将第 k 位取反</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="STL-函数"><a href="#STL-函数" class="headerlink" title="STL 函数"></a>STL 函数</h1><p>需引入 <code>&lt;alrorithm&gt;</code> 头文件</p>
+<ul>
+<li>规定下文中 <code>begin</code> 和 <code>end</code> 均为迭代器</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">min</span>(x, y);</span><br><span class="line"></span><br><span class="line"><span class="built_in">max</span>(x, y);</span><br><span class="line"></span><br><span class="line"><span class="built_in">swap</span>(x, y);</span><br><span class="line"></span><br><span class="line"><span class="built_in">find</span>(begin, end, x);</span><br><span class="line"></span><br><span class="line"><span class="built_in">count</span>(begin, end, x);</span><br><span class="line"></span><br><span class="line"><span class="built_in">revise</span>(begin, end);</span><br><span class="line"></span><br><span class="line"><span class="built_in">random_shuffle</span>(begin, end);</span><br><span class="line"></span><br><span class="line"><span class="built_in">unique</span>(begin, end);</span><br><span class="line"></span><br><span class="line"><span class="built_in">nth_element</span>(bengin, begin + k, end, compare);</span><br><span class="line"><span class="comment">// 找出序列中第 n 大的元素，使其左边均为小于它的数，右边均为大于它的数。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">lower_bound</span>(begin, end, x);</span><br><span class="line"><span class="built_in">upper_bound</span>(begin, end, x);</span><br><span class="line"></span><br><span class="line"><span class="built_in">next_permutation</span>(begin, end);</span><br><span class="line"><span class="built_in">prev_permutation</span>(begin, end);</span><br><span class="line"><span class="comment">// 返回数列按字典序的上 / 下一个位置，可用于枚举全排列</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，<code>random_shuffle</code> 自 C++14 起被弃用，C++17 起被移除。我们可以使用 <code>shuffle</code> 函数代替原来的 <code>random_shuffle</code>。使用方法为:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shuffle</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), rng);</span><br></pre></td></tr></table></figure>
+
+<p>（最后一个参数传入的是使用的随机数生成器，一般情况使用以真随机数生成器 random_device 播种的梅森旋转伪随机数生成器 mt19937）。</p>
+
+</article>
+    
+    
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+    <div class="trm-older-publication">
+        
+        <a class="trm-op-top trm-anima-link" href="/2020/12/04/2020.12.4%20-%20%E4%BD%99%E6%95%B0%E5%AE%9A%E7%90%86/">
+            <span class="trm-op-cover">
+                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63ba9f76be43e0d30e103609.jpg">
+            </span>
+            <h6 class="trm-op-title">余数定理 | 学习笔记</h6>
+        </a>
+        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+        <ul class="trm-card-data trm-label">
+            <li>20/12/04</li>
+            <li>07:04</li>
+            <li>数学与数论</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    
+    
+        <div class="col-lg-6">
+            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+    <div class="trm-older-publication">
+        
+        <a class="trm-op-top trm-anima-link" href="/2020/11/13/2020.11.13%20-%20%E5%93%88%E5%B8%8C%E8%A1%A8/">
+            <span class="trm-op-cover">
+                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63ba98afbe43e0d30e047825.jpg">
+            </span>
+            <h6 class="trm-op-title">哈希表 | 学习笔记</h6>
+        </a>
+        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+        <ul class="trm-card-data trm-label">
+            <li>20/11/13</li>
+            <li>14:15</li>
+            <li>数据结构</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    
+</div>
+
+    
+
+    <div class="trm-card trm-scroll-animation comment-container" data-scroll data-scroll-offset="50">
+    <div id="tcomment"></div>
+</div>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">Shawn</span>
+        </div>
+    
+
+      
+
+    
+        <div class="trm-footer-item">
+            The blog has been lovely to run <span id="since" class="trm-accent-color"></span> day
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        BirthDay = new Date("12/25/2022 17:00:00");
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        msPerDay = 24 * 60 * 60 * 1000
+        day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <!-- body -->
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+</div>
+            <!-- body end -->
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  <div id="trm-back-top" class="trm-back-top" data-title="Back To Top">
+    <i class="iconfont fas fa-arrow-up"></i>
+</div>
+  
+<div class="trm-search-popup">
+    <div class="trm-search-header">
+        <span class="trm-search-popup-btn-close">
+            <i class="iconfont fas fa-times"></i>
+        </span>
+    </div>
+    <div class="form trm-search-form">
+        <input class="trm-search-input" type="text" placeholder="Searching...">
+    </div>
+    <div class="trm-search-result-container">
+
+    </div>
+</div>
+
+  <!-- Plugin -->
+
+
+
+    
+    
+
+    
+<script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=1.2.14"></script>
+    
+
+    
+        
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=1.2.14"></script>
+    
+
+    <!-- 数学公式 -->
+    
+        
+<script src="https://unpkg.com/katex@latest/dist/katex.min.js" data-swup-reload-script></script>
+
+        
+            
+<script src="https://unpkg.com/katex@latest/dist/contrib/copy-tex.min.js" data-swup-reload-script></script>
+
+        
+        
+<script src="https://unpkg.com/katex@latest/dist/contrib/auto-render.min.js" data-swup-reload-script></script>
+
+        <script data-swup-reload-script>
+              window.renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true },
+                ],
+                ...{},
+            })
+        </script>
+    
+
+
+    <!-- 评论插件 -->
+    
+        
+        
+            
+<script src="https://unpkg.com/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script data-reset="true"></script>
+
+            <script data-swup-reload-script>
+                const twikooConfig = {"enable":true,"envId":"cloud-development-server-cf32436","visitor":true};
+                twikooConfig.el = '#tcomment';
+                twikoo.init(twikooConfig).then(function () {
+                    let container = document.querySelector('body>.tk-admin-container')
+                    if(container) container.remove()
+                    document.body.append(document.querySelector('.tk-admin-container'))
+                });;
+            </script>
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+<script id="async-script" src="/js/main.js?v=1.2.14"></script>
+
+</body>
+
+</html>

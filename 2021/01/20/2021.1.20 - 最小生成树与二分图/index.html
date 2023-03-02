@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="最小生成树 $MST$最小生成树指在无向图中找出任意两点都相互连通的树结构的最小边权 值得注意的是，一张无向图的最小生成树可能有很多棵，而如果一张图无法获得一个最小生成树，则得到的是最小生成森林（很形象化的名字） $Prim$朴素版 $O(n^2)$ 适用于稠密图（时间复杂度与边的个数无关）  算法思想： 类似于 $Dijkstra$ 算法，先定义一个集合存储最小生成树，之后进行以下几步：  将所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小生成树 | 学习笔记">
+<meta property="og:url" content="http://example.com/2021/01/20/2021.1.20%20-%20%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%88%86%E5%9B%BE/index.html">
+<meta property="og:site_name" content="Shawn &#39;s Blog">
+<meta property="og:description" content="最小生成树 $MST$最小生成树指在无向图中找出任意两点都相互连通的树结构的最小边权 值得注意的是，一张无向图的最小生成树可能有很多棵，而如果一张图无法获得一个最小生成树，则得到的是最小生成森林（很形象化的名字） $Prim$朴素版 $O(n^2)$ 适用于稠密图（时间复杂度与边的个数无关）  算法思想： 类似于 $Dijkstra$ 算法，先定义一个集合存储最小生成树，之后进行以下几步：  将所">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-20T13:16:14.000Z">
+<meta property="article:modified_time" content="2023-03-02T02:11:51.553Z">
+<meta property="article:author" content="Shawn">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+
+
+<title >最小生成树 | 学习笔记</title>
+
+<!-- Favicon -->
+
+    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=1.2.14' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+
+    
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@latest/dist/katex.min.css">
+
+    
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Shawn","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"/img/logo.svg","icon16":"/img/logo.svg","icon32":"/img/logo.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"theme_version":"1.2.14","theme":{"switch":true,"default":"style-light"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_button":"Copy","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false,"plugin":{"flickr_justified_gallery":{"js":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"fancybox":{"css":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css","js":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"}},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h"}};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=1.2.14" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style=" position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+			<a href="/" class="trm-logo-frame trm-anima-link">
+				
+					<img alt="logo" src="/img/logo.svg">
+				
+				
+			</a>
+			<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+
+			<!-- menu -->
+			<div class="trm-menu">
+				<nav>
+					<ul>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/" target="">
+								Home
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/archives/" target="">
+								Archives
+							</a>
+							
+							<ul>
+								
+								<li>
+									<a  href="/archives/" target="">
+										year
+									</a>
+								</li>
+								
+								<li>
+									<a  href="/categories/" target="">
+										Categories
+									</a>
+								</li>
+								
+							</ul>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/links/" target="">
+								Links
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/about/" target="">
+								About
+							</a>
+							
+						</li>
+						
+					</ul>
+				</nav>
+			</div>
+			<!-- menu end -->
+			
+			<!-- mode switcher place -->
+			
+			<div class="trm-mode-switcher-place">
+				<!-- <div class="trm-hidden-switcher"> -->
+					<div class="trm-mode-switcher">
+					  <i class="iconfont far fa-sun"></i>
+					  <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+					  <label class="trm-swich" for="trm-swich"></label>
+					  <i class="iconfont far fa-moon"></i>
+					</div>
+				  <!-- </div> -->
+			</div>
+			
+			<!-- mode switcher place end -->
+
+			
+				
+				<div id="trm-search-btn" class="trm-search-btn">
+					<i class="iconfont fas fa-search"></i>
+				</div>
+				 
+			 
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            最小生成树 | 学习笔记
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2021
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://tse4-mm.cn.bing.net/th/id/OIP-C.xNLWrybyA5rgSUMPR9AozgAAAA?pid=ImgDet&rs=1">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        Shawn
+    </h5>
+    
+    <div class="trm-label">
+        Stay
+        <span class="trm-typed-text">
+            <!-- Words for theme.user.typedText -->
+        </span>
+    </div>
+    
+</div>
+<!-- card header end -->
+
+<!-- sidebar social -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+
+<div class="trm-social">
+    
+        <a href="https://github.com/ShawnNotFound" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="luogu" rel="nofollow" target="_blank">
+            <i class="iconfont /img/luogu.png"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+
+<!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Ages:
+            </div>
+            <div class="trm-label trm-label-light">
+                16
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                Address:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hebei - China
+            </div>
+        </li>
+    
+</ul>
+
+<!-- info end -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<!-- action button -->
+<div class="text-center">
+    <a href="mailto:2557114220@qq.com" class="trm-btn">
+        Contact Me
+        <i class="iconfont far fa-envelope"></i>
+    </a>
+</div>
+<!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#最小生成树-MST"  data-scroll-to="#最小生成树-MST"><span class="toc-number">1.</span> <span class="toc-text">最小生成树 $MST$</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Prim"  data-scroll-to="#Prim"><span class="toc-number">1.1.</span> <span class="toc-text">$Prim$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#朴素版-O-n-2"  data-scroll-to="#朴素版-O-n-2"><span class="toc-number">1.1.1.</span> <span class="toc-text">朴素版 $O(n^2)$</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Kruskal-O-m·log-2m"  data-scroll-to="#Kruskal-O-m·log-2m"><span class="toc-number">1.2.</span> <span class="toc-text">$Kruskal$ $O(m·log_2m)$</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#二分图"  data-scroll-to="#二分图"><span class="toc-number">2.</span> <span class="toc-text">二分图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#染色法-dfs-判别二分图"  data-scroll-to="#染色法-dfs-判别二分图"><span class="toc-number">2.1.</span> <span class="toc-text">染色法($dfs$) - 判别二分图</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#匈牙利算法-求二分图的最大匹配"  data-scroll-to="#匈牙利算法-求二分图的最大匹配"><span class="toc-number">2.2.</span> <span class="toc-text">匈牙利算法 - 求二分图的最大匹配</span></a></li></ol></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            01/20
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            21:16
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Shawn
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树 $MST$"></a>最小生成树 $MST$</h1><p>最小生成树指在无向图中找出任意两点都相互连通的树结构的最小边权</p>
+<p>值得注意的是，一张无向图的最小生成树可能有很多棵，而如果一张图无法获得一个最小生成树，则得到的是最小生成森林（很形象化的名字）</p>
+<h2 id="Prim"><a href="#Prim" class="headerlink" title="$Prim$"></a>$Prim$</h2><h3 id="朴素版-O-n-2"><a href="#朴素版-O-n-2" class="headerlink" title="朴素版 $O(n^2)$"></a>朴素版 $O(n^2)$</h3><ul>
+<li>适用于稠密图（时间复杂度与边的个数无关）</li>
+</ul>
+<p><strong>算法思想：</strong></p>
+<p>类似于 $Dijkstra$ 算法，先定义一个集合存储最小生成树，之后进行以下几步：</p>
+<ol>
+<li>将所有距离初始化为正无穷</li>
+<li>进行 $n$ 次迭代，每次迭代中找到集合外<strong>距离集合</strong>最近的点 $t$ </li>
+<li>用 $t$ 更新其他点到<strong>集合</strong>的距离</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">510</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> g[N][N];</span><br><span class="line"><span class="type">int</span> dist[N];</span><br><span class="line"><span class="type">bool</span> st[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n ,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">prime</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dist);</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 用于存储最小生成树中所有边权之和 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> t = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span> (!st[j] &amp;&amp; (t == <span class="number">-1</span> || dist[t] &gt; dist[j]))</span><br><span class="line">				t = j;</span><br><span class="line">		<span class="comment">// 取出集合外距离集合最近的点 </span></span><br><span class="line">		<span class="keyword">if</span> (i &amp;&amp; dist[t] == INF) <span class="keyword">return</span> INF;</span><br><span class="line">		<span class="comment">// 如果不是第一个点并且距离为正无穷，说明该图不连通</span></span><br><span class="line">		<span class="comment">// 则没有最小生成树，判无解</span></span><br><span class="line">		<span class="keyword">if</span> (i) ans += dist[t];</span><br><span class="line">		<span class="comment">// 如果不是第一个点，则将该点边权加入最小生成树 </span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			dist[j] = <span class="built_in">min</span>(dist[j], g[t][j]);</span><br><span class="line">		<span class="comment">// 使用该点进行更新 </span></span><br><span class="line">		</span><br><span class="line">		st[t] = <span class="literal">true</span>;</span><br><span class="line">		<span class="comment">// 将该点加入集合 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="built_in">memset</span>(g, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> g);</span><br><span class="line">	<span class="keyword">while</span> (m --)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> u, v, w;</span><br><span class="line">		cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">		g[u][v] = g[v][u] = <span class="built_in">min</span>(g[v][u], w);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> t = <span class="built_in">prime</span>();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (t == INF) <span class="built_in">puts</span>(<span class="string">&quot;impossible&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span> cout &lt;&lt; t &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 $n$ 次的迭代中循环查找，因此时间复杂度为 $O(n^2)$，类比于 $Dijkstra$ 的二叉堆优化，使用 <code>priority_queue</code> 可以将循环中查找的时间复杂度降到 $O(m·log_2n)$，相比之下，$Kruskal$ 在时间复杂度相同的情况下思路更简单，因此更多地使用 $Kruskal$ </p>
+<h2 id="Kruskal-O-m·log-2m"><a href="#Kruskal-O-m·log-2m" class="headerlink" title="$Kruskal$ $O(m·log_2m)$"></a>$Kruskal$ $O(m·log_2m)$</h2><ul>
+<li>适用于稀疏图（时间复杂度随边数变化而变化）</li>
+</ul>
+<p><strong>算法思路：</strong></p>
+<ol>
+<li>将所有边按权重送小到大排序 $O(m·log_2m)$（常数很小）</li>
+<li>枚举每条边，设这条边从 $a$ 指向 $b$ ，权重为 $c$。如果当前 $a$ 和 $b$ 所在的集合不连通（使用并查集维护），就将这条边加入集合中</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a, b, w;</span><br><span class="line">	</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> node &amp;t) <span class="type">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> w &lt; t.w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;edge[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> p[N]; <span class="comment">// 并查集 father 数组</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p[x] != x) p[x] = <span class="built_in">find</span>(p[x]);</span><br><span class="line">	<span class="keyword">return</span> p[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">sort</span>(edge, edge + m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) p[i] = i;</span><br><span class="line">	<span class="comment">// 初始化并查集 </span></span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> res = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// res 存储最小生成树中边权之和</span></span><br><span class="line">	<span class="comment">// cnt 存储最小生成树中边数 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i ++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> a = edge[i].a, b = edge[i].b, w = edge[i].w;</span><br><span class="line"></span><br><span class="line">		a = <span class="built_in">find</span>(a), b = <span class="built_in">find</span>(b);</span><br><span class="line">		<span class="keyword">if</span> (a != b)</span><br><span class="line">		&#123;</span><br><span class="line">			p[a] = b; </span><br><span class="line">			res += w;</span><br><span class="line">			cnt ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (cnt &lt; n - <span class="number">1</span>) <span class="built_in">puts</span>(<span class="string">&quot;impossible&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span> cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m ;i ++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> a, b, w;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;</span><br><span class="line">		edge[i] = &#123;a, b, w&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">kruskal</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h1><p>二分图是指一个可以将所有点分成两侧，所有的边都是从一侧连向另一侧，内部没有边</p>
+<p>当且仅当图中不含奇数环<a href="%E5%A5%87%E6%95%B0%E7%8E%AF%E6%8C%87%E7%8E%AF%E5%BD%93%E4%B8%AD%E8%BE%B9%E7%9A%84%E6%95%B0%E9%87%8F%E4%B8%BA%E5%A5%87%E6%95%B0%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%86%E8%BF%99%E4%B8%AA%E7%8E%AF%E5%8F%AB%E5%81%9A%E4%BA%8C%E5%88%86%E5%9B%BE">^1</a>时，一个图是二分图</p>
+<h2 id="染色法-dfs-判别二分图"><a href="#染色法-dfs-判别二分图" class="headerlink" title="染色法($dfs$) - 判别二分图"></a>染色法($dfs$) - 判别二分图</h2><ul>
+<li>时间复杂度由 $dfs$ 继承而来，$O(m + n)$</li>
+<li>当且仅当一个图可以被二分图染色，这个图是二分图。由于图中不含有奇数环，染色过程中一定不出现矛盾</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>, M = N &lt;&lt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> color[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"><span class="comment">// point and color</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	color[u] = c;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = h[u]; i != <span class="number">-1</span>; i = edge[i].nxt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> t = edge[i].to;</span><br><span class="line">		<span class="keyword">if</span> (!color[t] &amp;&amp; !<span class="built_in">dfs</span>(t, <span class="number">3</span> - c)) </span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (color[t] == c)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line">	<span class="comment">// init</span></span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i ++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> a, b;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		<span class="built_in">add</span>(a, b), <span class="built_in">add</span>(b, a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// input</span></span><br><span class="line">	<span class="type">bool</span> judge = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">		<span class="keyword">if</span> (!color[i] &amp;&amp; !<span class="built_in">dfs</span>(i, <span class="number">1</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			judge = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span> (judge) <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="匈牙利算法-求二分图的最大匹配"><a href="#匈牙利算法-求二分图的最大匹配" class="headerlink" title="匈牙利算法 - 求二分图的最大匹配"></a>匈牙利算法 - 求二分图的最大匹配</h2><ul>
+<li>最坏情况时间复杂度 $O(mn)$，实际运行效率非常好</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">510</span>, M = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n1, n2, m;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> h[N], idx;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> val, nxt;</span><br><span class="line">&#125;edge[M];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> match[N];</span><br><span class="line"><span class="comment">// 存储右侧的对应关系 </span></span><br><span class="line"><span class="type">bool</span> st[N];</span><br><span class="line"><span class="comment">// 存储是否考虑过该点 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	edge[++ idx].val = b;</span><br><span class="line">	edge[idx].nxt = h[a];</span><br><span class="line">	h[a] = idx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = h[x]; i != <span class="number">-1</span>; i = edge[i].nxt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> t = edge[i].val;</span><br><span class="line">		<span class="keyword">if</span> (!st[t])</span><br><span class="line">		&#123;</span><br><span class="line">			st[t] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span> (match[t] == <span class="number">0</span> || <span class="built_in">find</span>(match[t]))</span><br><span class="line">			<span class="comment">// 右侧点可用 </span></span><br><span class="line">			&#123;</span><br><span class="line">				match[t] = x;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line">	<span class="comment">// init</span></span><br><span class="line">	cin &gt;&gt; n1 &gt;&gt; n2 &gt;&gt; m;</span><br><span class="line">	<span class="keyword">while</span> (m --)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> a, b;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		<span class="built_in">add</span>(a, b);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// input</span></span><br><span class="line">	<span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 当前匹配数量</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n1; i ++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">memset</span>(st, <span class="literal">false</span>, <span class="keyword">sizeof</span> st);</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">find</span>(i)) res ++;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</article>
+    
+    
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+    <div class="trm-older-publication">
+        
+        <a class="trm-op-top trm-anima-link" href="/2021/01/28/2021.1.28%20-%20ST%E8%A1%A8%20(RMQ%E9%97%AE%E9%A2%98)/">
+            <span class="trm-op-cover">
+                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63d5394bface21e9efb57d73.jpg">
+            </span>
+            <h6 class="trm-op-title">ST 表 | 学习笔记</h6>
+        </a>
+        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+        <ul class="trm-card-data trm-label">
+            <li>21/01/28</li>
+            <li>23:01</li>
+            <li>数据结构</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    
+    
+        <div class="col-lg-6">
+            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+    <div class="trm-older-publication">
+        
+        <a class="trm-op-top trm-anima-link" href="/2021/01/17/2021.1.17%20-%20%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/">
+            <span class="trm-op-cover">
+                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63d53e8aface21e9efc274a0.jpg">
+            </span>
+            <h6 class="trm-op-title">最短路算法 | 学习笔记</h6>
+        </a>
+        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+        <ul class="trm-card-data trm-label">
+            <li>21/01/17</li>
+            <li>15:42</li>
+            <li>图论</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    
+</div>
+
+    
+
+    <div class="trm-card trm-scroll-animation comment-container" data-scroll data-scroll-offset="50">
+    <div id="tcomment"></div>
+</div>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">Shawn</span>
+        </div>
+    
+
+      
+
+    
+        <div class="trm-footer-item">
+            The blog has been lovely to run <span id="since" class="trm-accent-color"></span> day
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        BirthDay = new Date("12/25/2022 17:00:00");
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        msPerDay = 24 * 60 * 60 * 1000
+        day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <!-- body -->
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+</div>
+            <!-- body end -->
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  <div id="trm-back-top" class="trm-back-top" data-title="Back To Top">
+    <i class="iconfont fas fa-arrow-up"></i>
+</div>
+  
+<div class="trm-search-popup">
+    <div class="trm-search-header">
+        <span class="trm-search-popup-btn-close">
+            <i class="iconfont fas fa-times"></i>
+        </span>
+    </div>
+    <div class="form trm-search-form">
+        <input class="trm-search-input" type="text" placeholder="Searching...">
+    </div>
+    <div class="trm-search-result-container">
+
+    </div>
+</div>
+
+  <!-- Plugin -->
+
+
+
+    
+    
+
+    
+<script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=1.2.14"></script>
+    
+
+    
+        
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=1.2.14"></script>
+    
+
+    <!-- 数学公式 -->
+    
+        
+<script src="https://unpkg.com/katex@latest/dist/katex.min.js" data-swup-reload-script></script>
+
+        
+            
+<script src="https://unpkg.com/katex@latest/dist/contrib/copy-tex.min.js" data-swup-reload-script></script>
+
+        
+        
+<script src="https://unpkg.com/katex@latest/dist/contrib/auto-render.min.js" data-swup-reload-script></script>
+
+        <script data-swup-reload-script>
+              window.renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true },
+                ],
+                ...{},
+            })
+        </script>
+    
+
+
+    <!-- 评论插件 -->
+    
+        
+        
+            
+<script src="https://unpkg.com/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script data-reset="true"></script>
+
+            <script data-swup-reload-script>
+                const twikooConfig = {"enable":true,"envId":"cloud-development-server-cf32436","visitor":true};
+                twikooConfig.el = '#tcomment';
+                twikoo.init(twikooConfig).then(function () {
+                    let container = document.querySelector('body>.tk-admin-container')
+                    if(container) container.remove()
+                    document.body.append(document.querySelector('.tk-admin-container'))
+                });;
+            </script>
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+<script id="async-script" src="/js/main.js?v=1.2.14"></script>
+
+</body>
+
+</html>
