@@ -117,7 +117,7 @@ archive:
 # 页脚
 
 footer:
-  copyrightYear: 2033
+  copyrightYear: 2023
   
   powered:
     enable: false
