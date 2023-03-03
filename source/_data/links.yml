@@ -13,17 +13,17 @@
   image: https://sjzezoj.com/images/logo_small.png
   desc: The OJ of S2 Middle School
 
-- name: AtCoder
-  url: https://atcoder.jp/
-  image: https://img.atcoder.jp/assets/logo.png
-  desc: The OJ of Japan Oier
+- name: GitHub
+  url: https://github.com/
+  image: https://img-blog.csdnimg.cn/img_convert/47127ad9b60270905b13deb37587cb09.png
+  desc: Build software better, together
 
-- name: UOJ
-  url: https://uoj.ac/
-  image: https://uoj.ac/pictures/UOJ.png
-  desc: Universal Online Judge
+- name: Netlify
+  url: https://app.netlify.com
+  image: https://s1.ax1x.com/2023/03/03/ppkdAtU.png
+  desc: Netlify builds, deploys and hosts your front-end
 
-- name: POJ
-  url: http://poj.org/
-  image: https://ts4.cn.mm.bing.net/th?id=ODLS.922033e2-f74d-4afb-b937-3abb2208a83f&w=16&h=16&o=6&pid=1.2
-  desc: The Online Judge of PKU
+- name: ILovePDF
+  url: https://www.ilovepdf.com/zh-cn
+  image: https://img0.baidu.com/it/u=4229679210,861111708&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256
+  desc: Online PDF tools for PDF lovers
