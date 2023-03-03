@@ -62,9 +62,9 @@ sidebar:
       icon: fab fa-github   
       url: https://github.com/ShawnNotFound
     
-    - name: luogu
-      icon: /img/luogu.png
-      url: https://gitee.com
+    - name: chatroom
+      icon: fab fa-envelop
+      url: https://chat.shawn404.top
 
 ## 打字动画
 
