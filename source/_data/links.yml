@@ -1,12 +1,12 @@
 - name: 洛谷
   url: https://www.luogu.com.cn/
   image: /img/luogu.png
-  desc: 洛谷 | 计算机科学教育新生态
+  desc: Luogu | Dev for Oiers~
 
-- name: Codeforces
-  url: https://codeforces.com/
-  image: https://cdn.luogu.com.cn/upload/image_hosting/yx6atdky.png
-  desc: The bigest OJ on the world
+- name: AcWing
+  url: https://acwing.com/
+  image: https://t7.baidu.com/it/u=3854013865,1597714249&fm=74&app=80&size=f256,256&n=0&f=JPEG&fmt=auto?sec=1677949200&t=df7894565f5a662e57bf0f31db50b88d
+  desc: Online classes dev by yxc
 
 - name: S2OJ
   url: https://sjzezoj.com/
