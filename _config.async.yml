@@ -25,9 +25,9 @@ user:
   last_name:  # 顶栏姓名标识
   avatar: https://tse4-mm.cn.bing.net/th/id/OIP-C.xNLWrybyA5rgSUMPR9AozgAAAA?pid=ImgDet&rs=1
   email: 2557114220@qq.com
-  domain: https://shawn-blogs.netlify.app/
+  domain: https://blog.shawn404.top/
   describe: 世事漫随流水 算来一生浮梦。
-  ruleText: <br> 暂不接受友链申请，仅收录OJ链接。
+  ruleText: <br> 暂不接受友链申请，仅收录部分个人实用链接。
 
 # 顶栏 | 导航栏 | TopBars
 
@@ -117,7 +117,7 @@ archive:
 # 页脚
 
 footer:
-  copyrightYear: 2023
+  copyrightYear: 2033
   
   powered:
     enable: false
