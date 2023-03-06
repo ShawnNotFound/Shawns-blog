@@ -168,6 +168,10 @@ comment:
 
 # 链接页配置，请见 /source/_data/links.yml
 
+reward:
+  enable: true
+  comment: Buy me a coffee~
+  url: https://afdian.net/a/ShawnNotFound
 
 
 # 关于页
