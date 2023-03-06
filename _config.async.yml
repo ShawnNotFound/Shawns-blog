@@ -63,7 +63,7 @@ sidebar:
       url: https://github.com/ShawnNotFound
     
     - name: chatroom
-      icon: fab fa-envelop
+      icon: fa fa-comment
       url: https://chat.shawn404.top
 
 ## 打字动画
@@ -150,10 +150,20 @@ baidu_push: true
 # 评论
 
 comment:
-  twikoo:
+  giscus:
     enable: true
-    visitor: true
-    envId: cloud-development-server-cf32436 # 腾讯云环境id
+    repo: ShawnNotFound/blog-repo
+    repo-id: R_kgDOJGBX3Q
+    category: General
+    category-id: DIC_kwDOJGBX3c4CUr3G
+    mapping: pathname
+    reactions-enabled: 1
+    emit-metadata: 0
+    lang: zh-CN
+    theme: 
+      light: light
+      dark: dark
+
 
 
 # 链接页配置，请见 /source/_data/links.yml
