@@ -29,6 +29,6 @@ $Have a nice day ~$
 
 ## Others
 
-Powered by Hexo, GitHub
+Powered by Hexo, Netlify, GitHub
 
 ~叠甲: ~对于文章内容可能产生的负面影响，请自行离开，本人不承担任何责任，不喜勿喷! 谢谢!
