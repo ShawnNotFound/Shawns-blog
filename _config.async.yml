@@ -107,7 +107,7 @@ banner:
 categorie_card:
   enable: true
   len: 2
-  list: ['随笔','']
+  # list: ['随笔','']
 
 # 归档页
 
