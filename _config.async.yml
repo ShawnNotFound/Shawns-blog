@@ -23,7 +23,7 @@ user:
   name: Shawn # 侧边栏与其他位置的姓名标识
   first_name: Shawn
   last_name:  # 顶栏姓名标识
-  avatar: # https://tse4-mm.cn.bing.net/th/id/OIP-C.xNLWrybyA5rgSUMPR9AozgAAAA?pid=ImgDet&rs=1
+  avatar: https://tse4-mm.cn.bing.net/th/id/OIP-C.xNLWrybyA5rgSUMPR9AozgAAAA?pid=ImgDet&rs=1
   email: 2557114220@qq.com
   domain: https://blog.shawn404.top/
   describe: 世事漫随流水 算来一生浮梦。
@@ -107,7 +107,7 @@ banner:
 categorie_card:
   enable: true
   len: 2
-  list: ['随笔']
+  list: ['随笔','']
 
 # 归档页
 
