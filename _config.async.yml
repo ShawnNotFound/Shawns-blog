@@ -65,6 +65,10 @@ sidebar:
     - name: chatroom
       icon: fa fa-comment
       url: https://chat.shawn404.top
+      
+    - name: visual code
+      icon: far fa-file-code
+      url: https://deploy-code-server-production-195b.up.railway.app/
 
 ## 打字动画
 
