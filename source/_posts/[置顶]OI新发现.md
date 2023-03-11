@@ -1,3 +1,13 @@
+---
+title: OI新发现 | 学习笔记
+date: 2023-03-11 20:40:32
+categories: OI骗分
+tags: OI骗分
+author: Shawn
+sticky: 100
+cover: https://img2.baidu.com/it/u=1190886353,2002708477&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500
+---
+
 # OI新发现
 
 ## 高速查找二进制中1的个数
