@@ -69,6 +69,10 @@ sidebar:
     - name: visual code
       icon: far fa-file-code
       url: https://shawns-code-server.up.railway.app
+      
+    - name: calendar
+      icon: far fa-calendar-alt
+      url: https://cal.com/shawnnotfound
 
 ## 打字动画
 
