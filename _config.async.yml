@@ -51,6 +51,10 @@ top_bars:
   - title: About
     url: /about/
     noswup: true
+    
+  - title: Comment
+    url: https://shawn-comment.up.railway.app/
+    noswup: true
 
 # 侧栏
 
@@ -58,21 +62,25 @@ top_bars:
 
 sidebar:
   social:  # 社交地址
-    - name: github
+    - name: Github
       icon: fab fa-github   
       url: https://github.com/ShawnNotFound
     
-    - name: chatroom
+    - name: Chatroom
       icon: fa fa-comment
       url: https://chat.shawn404.top
       
-    - name: visual code
+    - name: VS Code
       icon: far fa-file-code
       url: https://shawns-code-server.up.railway.app
       
-    - name: calendar
+    - name: Calendar
       icon: far fa-calendar-alt
       url: https://cal.com/shawnnotfound
+     
+    - name: Live Book
+      icon: far fa-edit
+      url: https://shawn-livebook.up.railway.app/
 
 ## 打字动画
 
