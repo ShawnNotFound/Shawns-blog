@@ -53,7 +53,7 @@ top_bars:
     noswup: true
     
   - title: Comment
-    url: https://shawn-comment.up.railway.app/
+    url: https://comment.shawn404.top/
     noswup: true
 
 # 侧栏
@@ -72,7 +72,7 @@ sidebar:
       
     - name: VS Code
       icon: far fa-file-code
-      url: https://shawns-code-server.up.railway.app
+      url: https://code.shawn404.top
       
     - name: Calendar
       icon: far fa-calendar-alt
@@ -80,7 +80,7 @@ sidebar:
      
     - name: Live Book
       icon: far fa-edit
-      url: https://shawn-livebook.up.railway.app/
+      url: https://livebook.shawn404.top
 
 ## 打字动画
 
