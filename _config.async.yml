@@ -52,9 +52,9 @@ top_bars:
     url: /about/
     noswup: true
     
-  - title: Comment
-    url: https://comment.shawn404.top/
-    noswup: true
+#  - title: Comment
+#    url: https://comment.shawn404.top/
+#    noswup: true
 
 # 侧栏
 
