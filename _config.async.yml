@@ -66,9 +66,9 @@ sidebar:
       icon: fab fa-github   
       url: https://github.com/ShawnNotFound
     
-    - name: Chatroom
-      icon: fa fa-comment
-      url: https://chat.shawn404.top
+#    - name: Chatroom
+#      icon: fa fa-comment
+#      url: https://chat.shawn404.top
       
     - name: VS Code
       icon: far fa-file-code
