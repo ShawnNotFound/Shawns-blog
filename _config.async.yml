@@ -159,6 +159,9 @@ toc:
   max_depth: 4
   min_depth: 1
 
+webAnalytics:  
+  enable: true
+  google: G-RG553XJL36
 
 # 百度SEO
 
