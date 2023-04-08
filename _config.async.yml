@@ -218,15 +218,15 @@ katex:
 
 # 站内搜索
 
-search:
-  enable: true
-  type: local
+# search:
+#   enable: true
+#   type: local
 
 
 search:
   enable: true
   type: engine
-  href: 'https://www.google.com/search?q=site:www.shawn404.top 博客 | Shawn'
-  href: "https://www.baidu.com/s?wd=site:www.shawn404.top 博客 | Shawn"
-  href: "https://www.bing.com/search?q=site:www.shawn404.top 博客 | Shawn"
+  href: 'https://www.google.com/search?q=site:blog.shawn404.top 博客 | Shawn'
+  href: "https://www.baidu.com/s?wd=site:blog.shawn404.top 博客 | Shawn"
+  href: "https://www.bing.com/search?q=site:blog.shawn404.top 博客 | Shawn"
   domain: blog.shawn404.top
