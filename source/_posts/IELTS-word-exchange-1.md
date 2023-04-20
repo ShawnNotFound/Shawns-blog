@@ -12,8 +12,8 @@ toc: false
 
 >本文部分内容单行较长，建议点击右下角打开阅读模式获得更佳阅读体验
 
-$$\text{超越} \rightarrow \text{\textcolor{pink}{surpass, overtake, override, exceed, excel over, overstep, win over, outdo}}$$
-$$\text {try one's best to do} \rightarrow  \text{\textcolor{pink} {try one's utmost to do}}$$
+$$\text{超越} \rightarrow \text{\textcolor{pink}{surpass, overtake, override, exceed, excel over, overstep, win over, outdo}}
+\text {try one's best to do} \rightarrow  \text{\textcolor{pink} {try one's utmost to do}}$$
 $$\text {追求卓越} \rightarrow \text{\textcolor{pink}{pursuing excellence}}$$
 $$\text{不知所措} \rightarrow \text{\textcolor{pink}{be at a lost about what to do}}$$
 $$\text{without doubt} \rightarrow \text{\textcolor{pink}{we cannot deny that / admittedly}}$$
