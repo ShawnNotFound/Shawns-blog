@@ -66,7 +66,7 @@ sidebar:
       icon: fab fa-github   
       url: https://github.com/ShawnNotFound
     
-    - name: Chatroom
+    - name: Chatroom(failed for now!)
       icon: fa fa-comment
       url: http://111.67.196.161/
       
@@ -78,9 +78,9 @@ sidebar:
       icon: far fa-calendar-alt
       url: https://cal.com/shawnnotfound
      
-    - name: Live Book
-      icon: far fa-edit
-      url: https://livebook.shawn404.top
+#     - name: Live Book
+#       icon: far fa-edit
+#       url: https://livebook.shawn404.top
 
 ## 打字动画
 
