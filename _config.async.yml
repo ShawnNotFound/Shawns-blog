@@ -211,9 +211,9 @@ katex:
 
 # 站内搜索
 
-search:
-  enable: true
-  type: local
+# search:
+#   enable: true
+#   type: local
 
 
 search:
