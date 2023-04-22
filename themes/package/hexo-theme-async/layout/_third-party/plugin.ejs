@@ -1,0 +1,88 @@
+<%
+let isSwiper,isTyping,isKatex,isSearch,plugin;
+
+isSwiper = Object.values(theme.banner).findIndex(item=>item?.type && item.type === 'slideshow' ) > 0;
+isTyping = theme?.sidebar?.typedText && Array.isArray(theme.sidebar.typedText) && theme.sidebar.typedText.length>0;
+isKatex = theme.katex.global || page?.katex;
+isSearch = theme.search.enable && theme.search.type === 'local'
+
+plugin = theme.assets.plugin;
+%>
+
+<% if(loadtype ==='css') {%>
+
+    <%- css(plugin.hexo_theme_async.rowcss) %>
+    <%- css(plugin.locomotive_scroll.css) %>
+    <%- css(plugin.fancybox.css) %>
+    <%- isSwiper ? css(plugin.swiper.css) : '' %>
+    <%- isKatex ? css(plugin.katex.css) : '' %>
+
+<% } else { %>
+
+    <%- theme.swup ? js(plugin.swup) : '' %>
+    <%- js(plugin.locomotive_scroll.js) %>
+    <%- js(plugin.fancybox.js) %>
+    <%- isSwiper ? js(plugin.swiper.js) : '' %>
+
+    <% if(isTyping) {%>
+        <script src="<%= url_for(plugin.hexo_theme_async.typing) %>?v=<%= theme.version %>"></script>
+    <% } %>
+
+    <% if(isSearch) {%>
+        <%- js(plugin.search) %>
+        <script src="<%= url_for(plugin.hexo_theme_async.search) %>?v=<%= theme.version %>"></script>
+    <% } %>
+
+    <!-- 数学公式 -->
+    <% if(isKatex) {
+        let options = { 
+            ...theme.katex.options
+        }
+        if(page?.katex?.options) {
+            options = {
+                ...options,
+                ...page.katex.options
+            }
+        }
+    %>
+        <%- js({src: plugin.katex.js,'data-swup-reload-script': true }) %>
+        <% if(theme.katex.copy_tex) {%>
+            <%- js({src: plugin.katex.copy_tex,'data-swup-reload-script': true }) %>
+        <% } %>
+        <%- js({src: plugin.katex.auto_render,'data-swup-reload-script': true }) %>
+        <script data-swup-reload-script>
+              window.renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true },
+                ],
+                ...<%- JSON.stringify(options) %>,
+            })
+        </script>
+    <% } %>
+
+    <!-- 评论插件 -->
+    <% if(page.comments) { %>
+        <% let comment = theme.comment%>
+
+        <% if(comment.bComments.enable) { %>
+            <%- js(plugin.bComments.map(src=>({src, 'data-swup-reload-script': true}))) %>
+        <% } else if(comment.twikoo.enable) { %>
+
+            <%- js({src: plugin.twikoo,'data-swup-reload-script': true, 'data-reset':'true' }) %>
+            <script data-swup-reload-script>
+                twikoo.init({
+                    ...<%- JSON.stringify(theme.comment.twikoo) %>,
+                    el:'#tcomment'
+                }).then(function () {
+                    let container = document.querySelector('body>.tk-admin-container')
+                    if(container) container.remove()
+                    document.body.append(document.querySelector('.tk-admin-container'))
+                });;
+            </script>
+
+        <% } %>
+    <% } %>
+<% } %>

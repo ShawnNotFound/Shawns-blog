@@ -1,0 +1,8 @@
+<% let comment = theme.comment%>
+<% if(comment.bComments.enable) { %>
+    <%- partial('./b-comments') %>
+<% } else if(comment.twikoo.enable) { %>
+    <%- partial('./twikoo') %>
+<% } else if(comment.giscus.enable) { %>
+    <%- partial('./giscus') %>
+<% } %>

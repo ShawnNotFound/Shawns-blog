@@ -1,0 +1,16 @@
+<%# 其他页 %>
+<%  if (page.type == 'links'){%>
+    <%- partial('./links') %>
+<%} else if (['message','comment'].includes(page.type)){%>
+    <%- partial('./comment') %>
+<%} else if (page.type=='about'){%>
+    <%- partial('./about',{post: page }) %>
+<%} else if (page.type=='project'){%>
+    <%- partial('./project',{post: page }) %>
+<%} else if (page.type=='tag'){%>
+    <%- partial('./tag') %>
+<%} else if (page.type=='category'){%>
+    <%- partial('./category') %>
+<%} else { %>
+    <%- partial('./custom') %>
+<%}%>
