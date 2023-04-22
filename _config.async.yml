@@ -170,19 +170,12 @@ baidu_push: true
 # 评论
 
 comment:
-  giscus:
+  twikoo:
     enable: true
-    repo: ShawnNotFound/blog-repo
-    repo-id: R_kgDOJGBX3Q
-    category: General
-    category-id: DIC_kwDOJGBX3c4CUr3G
-    mapping: pathname
-    reactions-enabled: 1
-    emit-metadata: 0
-    lang: zh-CN
-    theme: 
-      light: light
-      dark: dark
+    envId: https://twikoo.shawn404.top # 腾讯云环境id
+    region: # 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数
+    option: # 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+
 
 
 
@@ -197,9 +190,9 @@ reward:
 # 关于页
 
 about:
-  introduction: $Hi$，我是Shawn <br> 很高兴您能在浩瀚如烟的互联网世界里发现我的博客. <br> <br> 我是一名 oier, 极客, 摆烂主义者 <br> 热衷于探索计算机的一切 <br> 正在石家庄二中度过充实美好的三年 <br> 我将在此分享一些学习笔记以及其他有趣的东西. <br> <br> 别来无恙啊 ~   # 个人简单描述
-  blog: Powered by Hexo # 博客信息
-  privacy: 本网站不会追踪访客行为，且不要求访客提供任何敏感信息（真实姓名、身份证号码、手机号等），因而也不存在任何隐私泄漏问题。访客参与评论，必须遵守法律法规和基本道德规范，文明礼貌。严禁发布任何有关淫秽、反动、暴力、博彩、恐吓、低俗的内容等违法信息，在尊重言论自由的同时请保持和平与理性。请勿对他人采取不友好的评论或其它过激行为。     # 隐私权说明    
+  introduction:
+  blog: 
+  privacy: 
 
 
 # 字数统计
@@ -218,9 +211,9 @@ katex:
 
 # 站内搜索
 
-# search:
-#   enable: true
-#   type: local
+search:
+  enable: true
+  type: local
 
 
 search:
@@ -230,3 +223,6 @@ search:
 #   href: "https://www.baidu.com/s?wd=site:blog.shawn404.top 博客 | Shawn"
   href: "https://www.bing.com/search?q=site:blog.shawn404.top 博客 | Shawn"
   domain: blog.shawn404.top
+  
+  
+  
