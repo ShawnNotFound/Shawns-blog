@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="<%- config.language %>">
+
+<head>
+  <%- partial('./_partial/head') %>
+</head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <%- partial(theme.layout.page_loading) %>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <%- partial(theme.layout.mode_change) %>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <%- partial(theme.layout.header) %>
+            <!-- top bar end -->
+
+            <!-- body -->
+            <%- body %>
+            <!-- body end -->
+
+            <%- partial(theme.layout.fixed_btn) %>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  <%- partial('./_widget/search') %>
+  <%- partial('./_partial/script') %>
+
+</body>
+
+</html>

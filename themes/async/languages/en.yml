@@ -1,0 +1,90 @@
+site:
+  title: Site Information
+  webmaster: Webmaster
+  domain: Domain
+  avatar: Avatar
+  describe: Describe
+  ruleText: Friend chain requirements
+
+sidebar:
+  residence: Residence
+  city: City
+  age: Age
+  contact: Contact Me
+
+footer:
+  powered: 'Powered by %s'
+  theme: Theme
+  tips: 'The blog has been running %s day'
+  day: day
+  hour: hour
+  minute: minute
+  seconds: seconds
+
+title:
+  links: Friendly Link
+  new_publish: Newest Publications
+  comment: Message
+  author: Author
+  blog: Blog Application
+  privacy: Privacy and Comments
+  more: Read More
+  all_archives: All Archives
+  year_archives: 'Archive for %s'
+  other_articles: Other Articles
+  unclassified: Unclassified
+
+menu:
+  home: Home
+  archives: Archives
+  links: Links
+  about: About
+
+favicon:
+  showText: (/≧▽≦/)Hey! Good again!
+  hideText: (●—●)Oh, crash!
+  
+search:
+  placeholder: Searching...
+  result_placeholder: Please enter keywords to search
+  empty: 'We didn''t find any results for the search: ${query}.'
+  hits: '${hits} results found'
+  hits_time: '${hits} results found in ${time} ms'
+
+reward:
+  comment: I'm so cute. Please give me money.
+
+post:
+  sticky: TOP
+  read_more: READ MORE
+  copyright:
+    author: Post author
+    link: Post link
+    license_title: Copyright Notice
+    license_content: 'All articles in this blog are licensed under %s unless otherwise stated.'
+  copy:
+    success: Copied
+    failure: Copy failed
+  read_mode:
+    open: Enter reading mode
+    exit: Exit reading mode
+  notice_outdate_message: 'It has been %s days since the last update, the content of the article may be outdated.'
+
+rightside:
+  readmode_title: Read Mode
+  back_to_top: Back To Top
+  aside: Toggle between single-column and double-column
+
+date_suffix:
+  just: Just
+  min: minutes ago
+  hour: hours ago
+  day: days ago
+  month: months ago
+
+symbol:
+  comma: ', '
+  period: '. '
+  colon: ': '
+
+ieTips: For a better experience, use a browser other than Internet Explorer

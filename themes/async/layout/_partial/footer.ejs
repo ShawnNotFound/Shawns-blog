@@ -1,0 +1,55 @@
+<footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    <% if(theme.footer.beian.enable) { %>
+        <div class="trm-footer-item">
+            <a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank"><%- theme.footer.beian.icp %></a>
+        </div>
+    <% } %>
+
+    <% if(theme.footer.copyrightYear) { %>
+        <div class="trm-footer-item">
+            <span>© <%- theme.footer.copyrightYear %>- <%- date(Date.now(), 'YYYY') %></span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color"><%- theme.user.name %></span>
+        </div>
+    <% } %>
+
+    <% if(theme.footer.powered.enable) { %>
+        <div class="trm-footer-item">
+            <span>
+                <%- __('footer.powered','<a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>')%> v<%- hexo_env('version') %>
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                <%- __('footer.theme') %> - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v<%- async_env('version')%>
+            </span>
+        </div>
+    <% } %>  
+
+    <% if(theme.footer.live_time.enable) { %>
+        <div class="trm-footer-item">
+            <%-__('footer.tips','<span id="since" class="trm-accent-color"></span>')%>
+        </div>
+    <% } %> 
+
+    <% if(theme.footer.custom_text) { %>
+        <div class="trm-footer-item">
+            <%- theme.footer.custom_text %>
+        </div>
+    <% } %> 
+</footer>
+<% if(theme.footer.live_time.enable) { %>
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("<%- theme.footer.live_time.start_time %>");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+<% } %> 

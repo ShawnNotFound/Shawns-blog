@@ -1,0 +1,15 @@
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            <%- __('title.other_articles') %>
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    <% if(page.prev && theme.post_pagination.enable){ %>
+        <%- theme.post_pagination.type === 'large' ? partial(theme.layout.post_card, { post: page.prev }) : partial(theme.layout.post_card_mini, { post: page.prev }) %>
+    <%}%>
+    <% if(page.next && theme.post_pagination.enable){ %>
+        <%- theme.post_pagination.type === 'large' ? partial(theme.layout.post_card, { post: page.next }) : partial(theme.layout.post_card_mini, { post: page.next }) %>
+    <%}%>
+</div>
