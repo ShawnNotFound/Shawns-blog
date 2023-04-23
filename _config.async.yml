@@ -99,10 +99,11 @@ sidebar:
 # 横幅 Banner
 
 banner:
+  usecover: true
   index:
     type: video
     bgurl: https://cdn.moji.com/websrc/video/autumn20190924.mp4
-    bannerTitle: 树深时见鹿，<br>溪午不闻钟。
+    bannerTitle: Strive hard </br> and work novelty!
     bannerText: Hi my friend!
 
   archive: 
@@ -181,10 +182,19 @@ comment:
 
 # 链接页配置，请见 /source/_data/links.yml
 
+# reward:
+#   enable: true
+#   comment: Buy me a coffee~
+#   url: https://afdian.net/a/ShawnNotFound
+
 reward:
-  enable: true
-  comment: Buy me a coffee~
-  url: https://afdian.net/a/ShawnNotFound
+    enable: true
+    comment: Buy me a coffee~.
+    methods:
+        - name: 支付宝(推荐)
+          path: https://s1.ax1x.com/2023/04/23/p9eWpeU.jpg
+        - name: 微信
+          path: https://s1.ax1x.com/2023/04/23/p9eW9wF.png
 
 
 # 关于页
