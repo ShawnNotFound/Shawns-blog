@@ -1,9 +1,0 @@
-<% let banner = page.banner || {}; %>
-<%- partial(theme.layout.main,  {
-    banner: partial(theme.layout.banner,  {
-        ...theme.banner.default,
-        bannerTitle: page.title,
-        ...banner
-    }),
-    content: page.content + (page.comments ? partial(theme.layout.comment) :'')
-}) %>
