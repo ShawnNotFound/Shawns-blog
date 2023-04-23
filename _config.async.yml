@@ -12,10 +12,10 @@ favicon:
   icon32: /img/logo.svg
   appleTouchIcon: apple-touch-icon.png
   webmanifest: /site.webmanifest
-  visibilitychange: true
-  hidden: failure.ico
-  showText: (/≧▽≦/)嘿！骗你的！
-  hideText: (●—●)哎呀，崩溃了！
+  visibilitychange: false
+#   hidden: failure.ico
+#   showText: (/≧▽≦/)嘿！骗你的！
+#   hideText: (●—●)哎呀，崩溃了！
 
 # 用户信息
 
