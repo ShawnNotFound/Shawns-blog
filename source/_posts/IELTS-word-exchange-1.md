@@ -6,6 +6,8 @@ tags: 雅思
 author: Shawn
 cover: https://t7.baidu.com/it/u=1887698546,351130677&fm=193&f=GIF
 toc: false
+banner:
+  use_cover: true
 ---
 
 <center><h2><strong>同义替换1-50</strong></h2></center>
