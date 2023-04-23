@@ -1,0 +1,22 @@
+swup: /swup@2.0.19/dist/swup.min.js
+locomotive_scroll:
+  css: /locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css
+  js: /locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js
+fancybox: 
+  css: /@fancyapps/ui@4.0/dist/fancybox.css
+  js: /@fancyapps/ui@4.0/dist/fancybox.umd.js
+search: /hexo-generator-searchdb@1.4.0/dist/search.js
+swiper: 
+  css: /swiper@4.5.1/dist/css/swiper.min.css
+  js: /swiper@4.5.1/dist/js/swiper.min.js
+katex:
+  js: /katex@latest/dist/katex.min.js
+  css: /katex@latest/dist/katex.min.css
+  auto_render: /katex@latest/dist/contrib/auto-render.min.js
+  copy_tex: /katex@latest/dist/contrib/copy-tex.min.js
+bComments: [
+  //imgcache.qq.com/qcloud/cloudbase-js-sdk/1.7.1/cloudbase.full.js ,
+  /b-comments@0.0.13/dist/index.all.min.js
+]
+twikoo: /twikoo@1.6.7/dist/twikoo.all.min.js
+flickr_justified_gallery: /flickr-justified-gallery@latest/dist/fjGallery.min.js

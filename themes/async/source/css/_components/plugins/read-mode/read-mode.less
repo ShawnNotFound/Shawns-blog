@@ -1,0 +1,81 @@
+.trm-read-mode {
+    .trm-app-frame {
+        border          : none;
+        border-radius   : 0;
+        background-color: var(--theme-bg-color, #fcfcfe);
+    }
+
+    .trm-top-bar,
+    #page-sidebar,
+    #post-info,
+    #post-next-prev,
+    .footer-divider,
+    .trm-fixed-container,
+    footer {
+        display: none
+    }
+
+    .trm-banner {
+        height: 60px;
+
+        .trm-banner-content.trm-overlay {
+            padding-top     : 0;
+            background-color: var(--theme-bg-color, #fcfcfe);
+
+            .trm-banner-text {
+                h1 {
+                    color    : var(--theme-color, #00283a);
+                    position : fixed;
+                    left     : 0;
+                    right    : 0;
+                    width    : fit-content;
+                    margin   : auto;
+                    font-size: x-large;
+                }
+
+                div,
+                .trm-breadcrumbs {
+                    display: none;
+                }
+            }
+        }
+
+        .trm-banner-cover,
+        .trm-slideshow,
+        .trm-scroll-hint-frame {
+            display: none
+        }
+    }
+
+    #page-content {
+        flex     : 0 0 100%;
+        max-width: 100%;
+
+        .trm-content {
+            margin: 0;
+        }
+    }
+
+    .trm-card {
+        box-shadow: none;
+    }
+}
+
+.trm-exit-readmode {
+    position        : fixed;
+    bottom          : 30px;
+    right           : 20px;
+    z-index         : 100;
+    font-size       : 1.2rem;
+    width           : 2.5rem;
+    height          : 2.5rem;
+    line-height     : 2.5rem;
+    border-radius   : 6px;
+    border          : none;
+    background-color: var(--fixed-button-bg-color);
+    color           : var(--fixed-button-color);
+
+    &:hover {
+        color: var(--primary);
+    }
+}
