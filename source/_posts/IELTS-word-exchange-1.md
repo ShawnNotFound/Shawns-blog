@@ -12,8 +12,12 @@ toc: false
 
 >本文部分内容单行较长，建议点击右下角打开阅读模式获得更佳阅读体验
 
-$$\text{超越} \rightarrow \text{\textcolor{pink}{surpass, overtake, override, exceed, excel over, overstep, win over, outdo}}$
-$$\text {try one's best to do} \rightarrow  \text{\textcolor{pink} {try one's utmost to do}}$$
+$$
+\begin{aligned}
+\text{超越} \rightarrow \text{\textcolor{pink}{surpass, overtake, override, exceed, excel over, overstep, win over, outdo}}\\
+\text {try one's best to do} \rightarrow  \text{\textcolor{pink} {try one's utmost to do}}
+\end{aligned}
+$$
 $$\text {追求卓越} \rightarrow \text{\textcolor{pink}{pursuing excellence}}$$
 $$\text{不知所措} \rightarrow \text{\textcolor{pink}{be at a lost about what to do}}$$
 $$\text{without doubt} \rightarrow \text{\textcolor{pink}{we cannot deny that / admittedly}}$$
@@ -32,24 +36,24 @@ $$\text{important} \rightarrow \text{\textcolor{pink}{essential}}$$
 $$\text{addict / be addicted to} \rightarrow \text{\textcolor{pink}{obsess / be obsession with}}$$
 $$\text{就此而言，至于那个} \rightarrow \text{\textcolor{pink}{for that matter}}$$
 $$\text{心理上和生理上} \rightarrow \text{\textcolor{pink}{psychologically and physiologically}}$$
-$$\text{communication} \rightarrow \text{\textcolor{pink}{interaction}}$
-$$\text{be careful about/be worried about} \rightarrow \text{\textcolor{pink}{be cautious about}}$
-$$\text{definitely} \leftrightarrow \text{certainly} \leftrightarrow \text{absolutely}$
-$$\text{because of} \rightarrow \text{\textcolor{pink}{as a result of / due to / on account of / in consequence of / owing to}}$
-$$\text{give sb. sth.} \rightarrow \text{\textcolor{pink}{grant sb. sth.}}$
-$$\text{hold the view that} \rightarrow \text{\textcolor{pink}{hold the belief / opinion that}}$
-$$\text{similarly} \rightarrow \text{\textcolor{pink}{by the same token}}$
-$$\text{nowadays} \rightarrow \text{\textcolor{pink}{in contemporary world}}$
-$$\text{坚信} \rightarrow \text{\textcolor{pink}{firmly believe / strongly convinced / hold the strong opinion that}}$
-$$\text{all over the world} \rightarrow \text{\textcolor{pink}{every corner of the world}}$
-$$\text{快速生长} \rightarrow \text{\textcolor{pink}{mushroomed}$
-$$\text{is true / reasonalbe in some ways / aspects / respects} \rightarrow \text{\textcolor{pink}{...may contain a grain of truth}}$
-$$\text{it is possible that / it is likely that} \rightarrow \text{\textcolor{pink}{chances are that}}$
-$$\text{最新技术} \rightarrow \text{\textcolor{pink}{state-of-art technology}}$
-$$\text{有充分理由做某事} \rightarrow \text{\textcolor{pink}{have every reason to do sth.}}$
-$$\text{get one's attention} \rightarrow \text{\textcolor{pink}{arouse the eye-ball of sb.}}$
-$$\text{使某人从某事中分心} \rightarrow \text{\textcolor{pink}{distract sb. from sth.}}$
-$$\text{对...付部分责任} \rightarrow \text{partly result in / partly lead to} \rightarrow \text{\textcolor{pink}{be partly responsible for}}$
+$$\text{communication} \rightarrow \text{\textcolor{pink}{interaction}}$$
+$$\text{be careful about/be worried about} \rightarrow \text{\textcolor{pink}{be cautious about}}$$
+$$\text{definitely} \leftrightarrow \text{certainly} \leftrightarrow \text{absolutely}$$
+$$\text{because of} \rightarrow \text{\textcolor{pink}{as a result of / due to / on account of / in consequence of / owing to}}$$
+$$\text{give sb. sth.} \rightarrow \text{\textcolor{pink}{grant sb. sth.}}$$
+$$\text{hold the view that} \rightarrow \text{\textcolor{pink}{hold the belief / opinion that}}$$
+$$\text{similarly} \rightarrow \text{\textcolor{pink}{by the same token}}$$
+$$\text{nowadays} \rightarrow \text{\textcolor{pink}{in contemporary world}}$$
+$$\text{坚信} \rightarrow \text{\textcolor{pink}{firmly believe / strongly convinced / hold the strong opinion that}}$$
+$$\text{all over the world} \rightarrow \text{\textcolor{pink}{every corner of the world}}$$
+$$\text{快速生长} \rightarrow \text{\textcolor{pink}{mushroomed}$$
+$$\text{is true / reasonalbe in some ways / aspects / respects} \rightarrow \text{\textcolor{pink}{...may contain a grain of truth}}$$
+$$\text{it is possible that / it is likely that} \rightarrow \text{\textcolor{pink}{chances are that}}$$
+$$\text{最新技术} \rightarrow \text{\textcolor{pink}{state-of-art technology}}$$
+$$\text{有充分理由做某事} \rightarrow \text{\textcolor{pink}{have every reason to do sth.}}$$
+$$\text{get one's attention} \rightarrow \text{\textcolor{pink}{arouse the eye-ball of sb.}}$$
+$$\text{使某人从某事中分心} \rightarrow \text{\textcolor{pink}{distract sb. from sth.}}$$
+$$\text{对...付部分责任} \rightarrow \text{partly result in / partly lead to} \rightarrow \text{\textcolor{pink}{be partly responsible for}}$$
 $$\text{总结} \rightarrow \text{\textcolor{pink}{to conclude / in conclusion / in short / all in all / in a word}}$
 $$\text{as a result} \rightarrow \text{\textcolor{pink}{therefore / thus / consequently}}$
 $$\text{赞成，支持(support)} \rightarrow \text{\textcolor{pink}{advocate sth.}}$
