@@ -99,7 +99,7 @@ sidebar:
 # 横幅 Banner
 
 banner:
-  usecover: true
+  use_cover: true
   index:
     type: video
     bgurl: https://cdn.moji.com/websrc/video/autumn20190924.mp4
