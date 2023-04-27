@@ -4,7 +4,7 @@ date: 2023-03-02 16:08:06
 categories: 信息竞赛
 tags: 学习笔记
 author: Shawn
-cover: https://s1.ax1x.com/2023/03/02/ppFcuQS.jpg
+cover: https://t7.baidu.com/it/u=2067359777,945248471&fm=193&f=GIF
 ---
 # 快读快写模板
 ## 普通简版
