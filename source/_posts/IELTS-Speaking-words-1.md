@@ -4,9 +4,10 @@ date: 2023-04-27 19:13:32
 categories: IELTS
 tags: 雅思口语
 author: Shawn
+toc: false
 cover: https://t7.baidu.com/it/u=3165657288,4248157545&fm=193&f=GIF
 ---
- 
+
 <center><h2>friendship / contact old friends</h2></center>
 
 $$\text{contact someone again} \rightarrow \text{\color{pink}{get back in touch}}$$
@@ -39,3 +40,29 @@ $$\text{reach out to someone in a friendly manner} \rightarrow \text{\color{pink
 
 $$\text{learning different aspects of each other} \rightarrow \text{\color{pink}{get to know one another}}$$
 
+$$\text{a friend that you have lost contact with} \rightarrow \text{\color{pink}{long lost friend}}$$
+
+$$\text{look after our relationships with friends} \rightarrow \text{\color{pink}{nurture our friendships}}$$
+
+$$\text{share a similar heritage or cultrue} \rightarrow \text{\color{pink}{share a common background}}$$
+
+$$\text{last a long time} \rightarrow \text{\color{pink}{stand the test of time}}$$
+
+$$\text{make friends} \rightarrow \text{\color{pink}{struck up a friendship}}$$
+
+$$\text{to like each other straight away} \rightarrow \text{\color{pink}{to hit if off}}$$
+
+
+<center><h2>toys</h2></center>
+
+$$\text{make you think of a time in the past} \rightarrow \text{\color{pink}{go back a bit}}$$
+
+$$\text{something important from your past you will never forget} \rightarrow \text{\color{pink}{stand out in the memory}}$$
+
+$$\text{spend a lot of money on something} \rightarrow \text{\color{pink}{lash out on sth.}}$$
+
+$$\text{make you think about things in a new way} \rightarrow \text{\color{pink}{stetch (your) imagination}}$$
+
+$$\text{a very enjoyable time with someone, especially parents with children} \rightarrow \text{\color{pink}{spend quality time}}$$
+
+$$\text{pass things to the next generation} \rightarrow \text{\color{pink}{hand something down}}$$
