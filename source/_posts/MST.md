@@ -4,7 +4,7 @@ date: 2023-1-20 21:16:14
 categories: 信息竞赛
 tags: 图论
 author: Shawn  GrainRain
-cover: https://s1.ax1x.com/2023/03/02/ppFcZJP.jpg
+cover: https://t7.baidu.com/it/u=3734967019,941734598&fm=193&f=GIF
 ---
 
 
