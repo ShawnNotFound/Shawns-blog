@@ -4,7 +4,7 @@ date: 2023-1-17 15:42:34
 categories: 信息竞赛
 tags: 图论
 author: Shawn  GrainRain
-cover: https://s1.ax1x.com/2023/03/02/ppFcmz8.jpg
+cover: https://t7.baidu.com/it/u=2610975262,3538281461&fm=193&f=GIF
 ---
 
 # 单源最短路径问题
