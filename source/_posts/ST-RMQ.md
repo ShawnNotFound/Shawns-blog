@@ -4,7 +4,7 @@ date: 2023-1-28 23:01:57
 categories: 信息竞赛
 tags: 数据结构
 author: Shawn  GrainRain
-cover: https://s1.ax1x.com/2023/03/02/ppFceRf.jpg
+cover: https://t7.baidu.com/it/u=2120291633,1902073212&fm=193&f=GIF
 ---
 
 # $ST$ 表
