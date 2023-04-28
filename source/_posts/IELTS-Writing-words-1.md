@@ -18,7 +18,7 @@ $$\text {追求卓越} \rightarrow \text{\textcolor{pink}{pursuing excellence}}$
 
 $$\text{不知所措} \rightarrow \text{\textcolor{pink}{be at a lost about what to do}}$$
 
-$$\text{without doubt} \rightarrow \text{\textcolor{pink}{we cannot deny that / admittedly}}$$
+$$\text{without doubt} \rightarrow \text{\textcolor{pink}{we cannot deny that / admittedly / we may safely conclude that}}$$
 
 $$\text{cooperation} \rightarrow \text{\textcolor{pink}{collaboration}}$$
 
@@ -86,7 +86,7 @@ $$\text{使某人从某事中分心} \rightarrow \text{\textcolor{pink}{distract
 
 $$\text{对...付部分责任} \rightarrow \text{partly result in / partly lead to} \rightarrow \text{\textcolor{pink}{be partly responsible for}}$$
 
-$$\text{总结} \rightarrow \text{\textcolor{pink}{to conclude / in conclusion / in short / all in all / in a word}}$$
+$$\text{总结} \rightarrow \text{\textcolor{pink}{to put it in a nutshell / to conclude / in conclusion / in short / all in all / in a word}}$$
 
 $$\text{as a result} \rightarrow \text{\textcolor{pink}{therefore / thus / consequently}}$$
 
@@ -102,8 +102,8 @@ $$\text{有待商榷} \rightarrow \text{\textcolor{pink}{be still up for debate}
 
 $$\text{only} \rightarrow \text{simply} \rightarrow \text{\textcolor{pink}{exclusively}}$$
 
-$$\text{in fact / actually} \rightarrow \text{\textcolor{pink}{as a matter of fact}}$$
+$$\text{in fact / actually} \rightarrow \text{\textcolor{pink}{as a matter of fact / in reality}}$$
 
 $$\text{many} \rightarrow \text{\textcolor{pink}{plentiful / numerous}}$$
 
-$$\text{难以忍受的} \rightarrow \text{\textcolor{pink}{intolerable /unendurable / hard to tolerate / hard to endure}}$$
+$$\text{难以忍受的} \rightarrow \text{\textcolor{pink}{intolerable /unendurable / unbearable / insufferable / hard to tolerate / hard to endure}}$$    
