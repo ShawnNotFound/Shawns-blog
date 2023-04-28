@@ -1,6 +1,6 @@
 ---
 title: 基础数论 | OI笔记
-date: 2023-03-18 21:39:16
+date: 2023-04-28 20:39:16
 categories: 信息竞赛
 tags: 学习笔记
 author: Shawn
