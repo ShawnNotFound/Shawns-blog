@@ -5,7 +5,7 @@ categories: IELTS
 tags: 雅思
 toc: true
 author: Shawn
-cover: https://t7.baidu.com/it/u=1811223786,2017754440&fm=193&f=GIF
+cover: https://t7.baidu.com/it/u=2568080980,1605356548&fm=193&f=GIF
 ---
 
 <center><h2><strong>升格短语51-100</strong></h2></center>
