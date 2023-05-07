@@ -6,7 +6,7 @@ tags: IELTS
 author: Shawn
 toc: true
 sticky: 100
-cover: https://t7.baidu.com/it/u=2942499027,2479446682&fm=193&f=GIF
+cover: https://t7.baidu.com/it/u=4138158235,3956816634&fm=193&f=GIF
 ---
 
 >听力阅读将记录分数，口语记录练习数量，写作记录在podcast测评的得分</br>若阅读为单篇则在后面注明篇目且分数为本篇分数
