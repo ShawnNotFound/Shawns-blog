@@ -16,8 +16,7 @@ cover: https://t7.baidu.com/it/u=1260031315,3069314804&fm=193&f=GIF
 
 ## 题目分析
 
-![image](https://github.com/ShawnNotFound/Shawns-blog/assets/97796289/4c0c8022-efb1-4ef9-aa85-60eec10447cd)
-
+![image](https://github.com/ShawnNotFound/Shawns-blog/assets/97796289/6527cb62-fdc6-4bad-813e-382f26ba8cb9)
 
 ## 代码实现
 
