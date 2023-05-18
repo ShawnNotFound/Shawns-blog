@@ -5,7 +5,6 @@ categories: IELTS
 tags: IELTS
 author: Shawn
 toc: true
-sticky: 100
 cover: https://t7.baidu.com/it/u=4138158235,3956816634&fm=193&f=GIF
 ---
 
