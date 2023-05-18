@@ -1,5 +1,5 @@
 ---
-title: 题目分享 | OI
+title: 题目分享(题目部分) | OI
 date: 2023-05-18 14:18:21
 categories: 信息竞赛
 tags: OI
